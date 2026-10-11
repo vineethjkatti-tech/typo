@@ -49,13 +49,16 @@ func _ready():
 	area.input_event.connect(_on_area_input)
 	typing_timer.timeout.connect(_on_typing_stopped)
 	
-	for k in range(KEY_A, KEY_Z + 1):
-		typing_keys.append(k as Key)
-	for k in range(KEY_0, KEY_9 + 1):
-		typing_keys.append(k as Key)
-	typing_keys.append(KEY_SPACE)
-	typing_keys.append(KEY_BACKSPACE)
-	typing_keys.append(KEY_ENTER)
+	if OS.has_feature("windows") and ClassDB.class_exists("GlobalInput"):
+		for k in range(KEY_A, KEY_Z + 1):
+			typing_keys.append(k as Key)
+		for k in range(KEY_0, KEY_9 + 1):
+			typing_keys.append(k as Key)
+		typing_keys.append(KEY_SPACE)
+		typing_keys.append(KEY_BACKSPACE)
+		typing_keys.append(KEY_ENTER)
+	
+
 	
 	
 func _check_global_typing() -> void:
@@ -73,7 +76,9 @@ func _check_global_typing() -> void:
 
 
 func _process(_delta: float) -> void:
-	_check_global_typing()
+	
+	if OS.has_feature("windows") and ClassDB.class_exists("GlobalInput"):
+		_check_global_typing()
 
 			
 func _on_typing_stopped() -> void:
@@ -90,6 +95,15 @@ func _on_typing_stopped() -> void:
 					
 				
 func _physics_process(delta: float) -> void:
+	
+	var current_screen = DisplayServer.window_get_current_screen()
+	var screen_rect = DisplayServer.screen_get_usable_rect(current_screen)
+	
+	var min_x = screen_rect.position.x
+	var min_y = screen_rect.position.y
+	var max_x = screen_rect.position.x + screen_rect.size.x - window_size.x
+	var max_y = screen_rect.position.y + screen_rect.size.y - window_size.y
+	
 	if is_dragging:
 		var mouse_pos = Vector2(DisplayServer.mouse_get_position())
 		var target_win_pos = mouse_pos - drag_offset
@@ -113,10 +127,7 @@ func _physics_process(delta: float) -> void:
 		
 	var window_position = Vector2(DisplayServer.window_get_position())
 	window_position += direction * speed * delta
-	
-	var max_x = screen_size.x - window_size.x
-	var max_y = screen_size.y - window_size.y
-	
+		
 	if window_position.x <= 0:
 		window_position.x = 0
 		direction.x = abs(direction.x)
