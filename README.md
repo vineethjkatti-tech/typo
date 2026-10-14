@@ -6,6 +6,8 @@
 
 Besides being an insanely cool and good-looking, **Typo** is a desktop companion which **ponders** around on your screen, which you can **drag** around, takes **rests** sometimes and also is **veryyyyy excited to see you type**. It **wags its tail around** at the sight of you typing and starts **panting** like crazyy!!
 
+**Reship:** There are new animations for typo!! Be careful while draggin' it from now on cause it may **dangle**... and don't leave your computer idle for typo might **doze off**...
+
 Just install the .exe file from [itch.io](https://vineethjkatti-tech.itch.io/typo) and click on it to run!!
 
 ship message on slack: https://hackclub.slack.com/archives/C0C51NCK1DG/p1791395576746099
