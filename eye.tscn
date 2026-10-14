@@ -1,14 +1,44 @@
 [gd_scene format=3 uid="uid://cn3bhf08ebgc"]
 
 [ext_resource type="Script" uid="uid://op3m2w0muuuc" path="res://something.gd" id="1_1t7xr"]
+[ext_resource type="Texture2D" uid="uid://cgc3gob31nfk3" path="res://dof-falling.png" id="2_cko43"]
 [ext_resource type="Texture2D" uid="uid://cswn8ysneoyrj" path="res://dog_2_sit.png" id="2_x8diq"]
 [ext_resource type="Texture2D" uid="uid://cw3auwboqty7e" path="res://dog_2_wag_sheet.png" id="3_kjel7"]
 [ext_resource type="Texture2D" uid="uid://ifmrjkysajl3" path="res://dog_2_walk.png" id="4_cko43"]
+[ext_resource type="Texture2D" uid="uid://dx7s0khod8aqo" path="res://dof-sleeping.png" id="4_ppl4k"]
 [ext_resource type="AudioStream" uid="uid://cuf8pgmauhcs7" path="res://fnx_sound-animated-dog-panting-287307.mp3" id="5_kjel7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldqk7"]
+atlas = ExtResource("2_cko43")
+region = Rect2(0, 0, 99, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfgko"]
+atlas = ExtResource("2_cko43")
+region = Rect2(99, 0, 99, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umwve"]
+atlas = ExtResource("2_cko43")
+region = Rect2(198, 0, 99, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ppl4k"]
 atlas = ExtResource("2_x8diq")
 region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uuv1"]
+atlas = ExtResource("4_ppl4k")
+region = Rect2(0, 0, 73, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymh63"]
+atlas = ExtResource("4_ppl4k")
+region = Rect2(73, 0, 73, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ylaq"]
+atlas = ExtResource("4_ppl4k")
+region = Rect2(146, 0, 73, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdk65"]
+atlas = ExtResource("4_ppl4k")
+region = Rect2(219, 0, 73, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7elfo"]
 atlas = ExtResource("3_kjel7")
@@ -78,10 +108,41 @@ region = Rect2(336, 0, 48, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ldqk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfgko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umwve")
+}],
+"loop": 1,
+"name": &"Falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ppl4k")
 }],
 "loop": 1,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_3uuv1")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_ymh63")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_1ylaq")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_tdk65")
+}],
+"loop": 1,
+"name": &"Sleeping",
 "speed": 5.0
 }, {
 "frames": [{
@@ -144,21 +205,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hewpr"]
-size = Vector2(255, 215)
+size = Vector2(240.5, 222)
 
 [node name="Node2D" type="Node2D" unique_id=324056995]
 script = ExtResource("1_1t7xr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=813365741]
-position = Vector2(97, 86)
-scale = Vector2(4.1458335, 4.1458335)
+position = Vector2(90, 74)
+scale = Vector2(3.5061245, 3.5061245)
 sprite_frames = SubResource("SpriteFrames_ijlsb")
-animation = &"Typing"
+animation = &"Sleeping"
+frame = 1
+frame_progress = 0.5742121
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2130701303]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=802115838]
-position = Vector2(101, 98)
+position = Vector2(99, 102)
 shape = SubResource("RectangleShape2D_hewpr")
 
 [node name="TypingTimer" type="Timer" parent="." unique_id=1051304988]
